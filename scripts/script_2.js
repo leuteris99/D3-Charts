@@ -79,7 +79,7 @@ d3.tsv("data/gr-unemployment.tsv",function(data){
         .attr("height", 10)
         .attr("y", 300)
         .attr("x", function(d,i){ return i * 80 + 65;})
-        .attr("opacity", "0.9")
+        .attr("opacity", "1")
         .attr("fill", "crimson")
         .on("mouseover", function(d,i){ return onBarHover(i); })
         .on("mouseout", function(d,i){ return onBarOut(i); })
@@ -118,14 +118,22 @@ function trimDecimals(num,decimal){
 // triggers when the cursor is hoverin a bar
 function onBarHover(i){
     var selectedTxt = "#percent" + i;
+    var selectedBar = "#bargroup #bars #rect" + i;
     d3.select(selectedTxt)
         .attr("display", "block");
+
+    d3.select(selectedBar)
+        .attr("opacity", "0.8");
 }
 //triggers when the cursor is leaving a bar
 function onBarOut(i){
     var selectedTxt = "#percent" + i;
+    var selectedBar = "#bargroup #bars #rect" + i;
     d3.select(selectedTxt)
         .attr("display", "none");
+
+    d3.select(selectedBar)
+    .attr("opacity", "1");
 }
 
 /* 

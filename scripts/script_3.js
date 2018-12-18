@@ -102,7 +102,7 @@ d3.csv("data/eu-gdp.csv", function(data){
 
     // triggers when a circle is hovered
     function onBubbleHover(d,i){
-        var selBubble = "#circle" + i 
+        var selBubble = "#circle" + i;
         var selTxt = selBubble + " text";
         svg.select(selTxt).attr("display", "block");
 
@@ -110,11 +110,17 @@ d3.csv("data/eu-gdp.csv", function(data){
         gdpTxt.select("#gdpValue").text(d.Value + " M. Euros");
 
         svg.select(selBubble).raise();
+        svg.select(selBubble).select("circle")
+            .attr("opacity", "0.7");
     }
     // triggers when the cursor leave the circle
     function onBubbleOut(d,i){
-        var selTxt = "#circle" + i + " text";
+        var selBubble = "#circle" + i;
+        var selTxt = selBubble + " text";
         d3.select(selTxt).attr("display", "none");
+
+        svg.select(selBubble).select("circle")
+            .attr("opacity", "1");
     }
 
     // triggers when add a year from the yearToggle
